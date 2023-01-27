@@ -1,6 +1,7 @@
+
 import express from "express";
+import dotenv from "dotenv";
 import mongoose from "mongoose";
-import dotenv from "dotenv"
 import userRoutes from './routes/users.js'
 import videoRoutes from './routes/videos.js'
 import commentRoutes from './routes/comments.js'
@@ -9,10 +10,9 @@ import cookieParser from "cookie-parser";
 import cors from "cors"
 import path from 'path'
 import url from 'url'
-const PORT = 8800 || process.env.PORT
 
 const app = express();
-dotenv.config();
+dotenv.config()
 
 const connect = ()=>{
     mongoose.set('strictQuery', true);
@@ -63,7 +63,7 @@ app.get('*', (req, res)=>{
 
 
 
-app.listen(PORT,()=>{
+app.listen(process.env.PORT || 8800,()=>{
     connect()
-    console.log(`running setver at ${PORT}`)
+    console.log(`running setver at ${process.env.PORT || 8800}`)
 })
